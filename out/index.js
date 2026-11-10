@@ -3,262 +3,83 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.swordSystem = exports.SwordSystem = void 0;
+exports.swordSystem = void 0;
+const console_typewriter_1 = require("./System/console-typewriter");
 const prompt_sync_1 = __importDefault(require("prompt-sync")); //loading import
-//function and class system for the game (start)
-// sword system (items for attack) (optimized with copilot) (from line 6 to 29)
-class SwordSystem {
-    constructor() {
-        this.herosword = "THE HERO SWORD";
-        this.monstersword = "THE MONSTER SWORD";
-        this.dragonsword = "THE DRAGON SWORD";
-        this.heroDamage = 80;
-        this.monsterDamage = 50;
-        this.dragonDamage = 60;
-    }
-    damageONE() {
-        return this.heroDamage;
-    }
-    damageTWO() {
-        return this.monsterDamage;
-    }
-    damageTHREE() {
-        return this.dragonDamage;
-    }
-}
-exports.SwordSystem = SwordSystem;
-//end of sword system (starts at line 6)
+const SwordSystem_1 = require("./System/SwordSystem"); //import Sword System
+const PlayerHPsystem_1 = require("./System/PlayerHPsystem");
+const HealingPotion_1 = require("./System/HealingPotion");
 // Create one sword system so the sword names can be used with console.log interpolation.
-exports.swordSystem = new SwordSystem();
+exports.swordSystem = new SwordSystem_1.SwordSystem();
 const herosword = exports.swordSystem.herosword;
 const monstersword = exports.swordSystem.monstersword;
 const dragonsword = exports.swordSystem.dragonsword;
-//stackoverflow code start
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-//this function does not work right now but it will be used in the future for a better experience of the game to read text 
-/* export async function say(text: string, ms = 800): Promise<void> {
-    console.log(text);
-    await delay(ms);
-} */
-//end (function called by "await delay(1000);")
-// 1. HP System start
-class HPsystem {
-    constructor(maxHp = 100) {
-        this.maxHp = maxHp;
-        this.currentHp = maxHp;
-    }
-    takeDamage(amount) {
-        if (amount <= 0)
-            return;
-        this.currentHp = Math.max(0, this.currentHp - amount);
-    }
-    heal(amount) {
-        if (amount <= 0)
-            return;
-        this.currentHp = Math.min(this.maxHp, this.currentHp + amount);
-    }
-    getHp() { return this.currentHp; }
-    getMaxHp() { return this.maxHp; }
-    isAlive() { return this.currentHp > 0; }
-}
-// 2.Basic Player of use HP-System 
-class Player {
-    constructor(name, maxHp) {
-        this.name = name;
-        this.health = new HPsystem(maxHp); // Here for a new player (start of game)
-    }
-}
-//start sword
-const sword1 = ("basic sword ");
-//shop swords (old)
-/* const herosword = ("THE HERO SWORD")
-const monstersword = ("THE MONSTER SWORD")
-const dragonsword = ("THE DRAGON SWORD") */
-/* //HP System (not done yet)
-const HP100 = ("HP100")
-const HP80 = ("HP80")
-const HP60 = ("HP60")
-const HP50 = ("HP50")
-const HP25 = ("HP25")
-const HP0 = ("HP0") */
+const basicsword = exports.swordSystem.basicsword;
+// Healing potions
+const maxHealingPotion = new HealingPotion_1.MaxHealingPotion();
+const basicHealingPotion = new HealingPotion_1.BasicHealingPotion();
+const bigHealingPotion = new HealingPotion_1.BigHealingPotion();
+const strangePotion = new HealingPotion_1.strangeHealingPotion();
+//typewriter configuration
+console_typewriter_1.typewriterConfig.delayMs = 120; // faster for a battle scene
+console_typewriter_1.typewriterConfig.delayMs = 120; // slower for dramatic text
+/* typewriterConfig.enabled = false; */ // instant output (menus, stats)
+console_typewriter_1.typewriterConfig.enabled = true;
 //loading system for now (start)
 const prompt = (0, prompt_sync_1.default)();
-const total = 50;
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-const loadAdventure = async () => {
-    const start = Date.now();
-    for (let i = 0; i <= total; i++) {
-        const elapsed = (Date.now() - start) / 1000;
-        const remaining = i ? (elapsed / i) * (total - i) : 0;
-        globalThis.process.stdout.write(`\rProgress: ${i}/${total} | Remaining: ${remaining.toFixed(1)}s | Elapsed: ${elapsed.toFixed(1)}s`);
-        await sleep(100);
-    }
-    console.log('\nAdventure loaded!');
-};
+/* const total = 50;
+
+const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms)); */
+/* const loadAdventure = async (): Promise<void> => {
+  const start = Date.now();
+  for (let i = 0; i <= total; i++) {
+    const elapsed = (Date.now() - start) / 1000;
+    const remaining = i ? (elapsed / i) * (total - i) : 0;
+    (globalThis as unknown as { process: { stdout: { write(text: string): void } } }).process.stdout.write(
+      `\rProgress: ${i}/${total} | Remaining: ${remaining.toFixed(1)}s | Elapsed: ${elapsed.toFixed(1)}s`
+    );
+    await sleep(100);
+  }
+  
+}; */
 //function and clas system for the game (end)
 //loading system end (end)
-const main = async () => {
-    console.log('Hello, welcome to the RPG CLI!');
-    const username = prompt('My name is Sira, what is your name? ');
-    const player = new Player(`${username}`, 100);
-    console.log(`Nice to meet you, ${username}!`);
-    console.log(`Please wait ${username}, your adventure is loading`);
-    await loadAdventure(); //waitng for loading to stop
-    console.log('The adventure begins!');
-    const answer = prompt(`Hey ${username} ${player.health.getHp()}/${player.health.getMaxHp()} HP, You really hit your head hard—is everything okay? (yes/no)`);
-    if (answer === "yes" || answer === "y") {
-        console.log('Oh okay just say if you need something');
-        await delay(1000);
-        console.log('now we go the the village');
+const start = async () => {
+    console.log('You falling down a dark hole, you hit your head hard and wake up in a strange place...');
+    console.log('Your eyes are blurry, you can barely see anything, but you can hear a voice in the distance...');
+    console.log('You can barely make out the words, but you can hear it say "Is someone here?"');
+    console.log('out of nowhere, a weird looking women appears, she looks like a wolf and a human at the same time, she has a long tail and sharp claws, she is wearing a long cloak and a hood, she has a staff in her hand, she looks like a wizard or a witch, she is looking at you with a curious expression on her face...');
+    console.log('She says "Hello, my name is Sira, I am a Wolf, and I have been looking for you, i saw someone falling from a black spot in the sky,"');
+    const username = prompt('Sira says "i almost forgot to ask, what is your name?" ');
+    const player = new PlayerHPsystem_1.Player(`${username}`, 100);
+    console.log(`Oh ${username}! `);
+    console.log(`Please be careful ${username}, I will give you a heal with a ${maxHealingPotion.name} and restore your health to full.`);
+    player.health.takeDamage(50);
+    console.log(`you looking over you and see a health bar and it says ${player.health.getHp()}/${player.health.getMaxHp()} HP.`);
+    maxHealingPotion.heal(player);
+    console.log(`You have been healed by "sira"to ${player.health.getHp()}/${player.health.getMaxHp()} HP.`);
+    console.log('Sira says "I will take you to the village, but first, I need to ask you a question."');
+    console.log('Sira says "Where you from? i never saw anyone from this place before, you must be from a different world, right?"');
+    const answer = prompt(`Hey ${username}, have you ever been to the village before? (yes/no) `).toLowerCase();
+    if (answer === "yes" || answer === "y" || answer === "Yes" || answer === "Y") {
+        console.log('Good to hear that! I will take you to the village now, you can get all sorts of things there');
     }
-    else if (answer === "no") {
-        await delay(500);
-        console.log('We’re heading to the village now; you can get all sorts of things there');
-    }
-    else {
-        await delay(500);
-        console.log('okay? anyways, we’re heading to the village now; you can get all sorts of things there');
-    }
-    console.log("You both walking to the village");
-    await delay(1000);
-    console.log("on the way to the village you both  encounters a dragon on the way");
-    await delay(1000);
-    console.log(`Hey ${username} take this!`);
-    console.log(`Sira gives you a ${sword1}`);
-    const question = prompt(` do you take it? (yes/no)`);
-    if (question === "yes" || answer === "y") {
-        console.log(`You take the${sword1} and you attack the dragon`);
-        const attack = prompt(` Do you wanna use basic attack or heavy attack? (1/2)`);
-        if (attack === "1") {
-            console.log(`You attack the dragon (dragon now has 25HP! left of 50HP!`);
-            await delay(500);
-            console.log("the dragon fleeing from you and sira");
-        }
-        else if (attack === "2") {
-            console.log(`You attack the dragon (dragon now has 0 HP! out of 50HP!)`);
-            await delay(1000);
-            console.log("You examine yourself. and checking you HP");
-            await delay(500);
-            console.log(`you have  HP: ${player.health.getHp()}/${player.health.getMaxHp()} `);
-        }
-        else {
-            player.health.takeDamage(50);
-            console.log(`Bcs you didnt attack the dragon you both try to run away but the dragon catch up on you lose 50HP`);
-            await delay(2000);
-            console.log(`you now have: ${player.health.getHp()}/${player.health.getMaxHp()}HP`);
-        }
-    }
-    else if (question === "no") {
-        player.health.takeDamage(50);
-        console.log(`Bcs you didnt take the sword you both try to run away but the dragon catch up on you and you lose 50HP`);
-        await delay(2000);
-        console.log(`you have now HP ${player.health.getHp()}/${player.health.getMaxHp()} `);
+    else if (answer === "no" || answer === "n" || answer === "No" || answer === "N") {
+        console.log('Oh, I see. Well, I will take you to the village now, you can get all sorts of things there');
     }
     else {
-        player.health.takeDamage(50);
-        console.log(`Bcs you didnt take the sword you both try to run away but the dragon catch up on you and you lose 50HP`);
-        await delay(2000);
-        console.log(`you have now HP ${player.health.getHp()}/${player.health.getMaxHp()} `);
+        console.log('okay? I will take you to the village now, you can get all sorts of things there');
     }
-    console.log("that was close");
-    await delay(4000);
-    console.log("you both walk to the village");
-    await delay(2000);
-    console.log("you slowly arrive at the village and go into a shop there.");
-    await delay(5000);
-    console.log("inside the shop you see some swords and healing potion");
-    await delay(5000);
-    if (player.health.getHp() <= 99) {
-        console.log(`hey ${username} i can see you only have ${player.health.getHp()}, i gona buy you a healing potion`);
-        await delay(1000);
-        player.health.heal(50);
-        console.log(`sira buys you a healing potion and you get +50HP!`);
-        console.log(`your ${player.health.getHp()} HP goes up to ${player.health.getMaxHp()}HP`);
-        await delay(1000);
-        console.log(`your current HP is ${player.health.getHp()}`);
+    console.log('you and sira walk to the village.');
+    console.log('on the way to the village, you see a strange looking creature, it looks like a dragon');
+    console.log('Sira says "Be careful, that is a dragon, it is very dangerous, here take this"');
+    console.log(`Sira gives you a ${exports.swordSystem.basicsword} and says "Use this to defend yourself"`);
+    const choice = prompt('Do you want to attack the dragon or run away? (1/2)');
+    if (choice === '1') {
+        console.log(`You attack the dragon with your ${exports.swordSystem.basicsword} and deal ${exports.swordSystem.damageFOUR()} damage.`);
     }
-    else if (player.health.getHp() === 100) {
-        console.log("we didnt take any damage so we dont need a healing potion");
-    }
-    ;
-    await delay(1000);
-    console.log("you and sira looking for a new sword");
-    await delay(1000);
-    console.log("you and siras eyes lock on to some swords");
-    await delay(1000);
-    console.log("There are 3 swords infront you");
-    await delay(1000);
-    console.log("the shop owner ask you and sira which you want");
-    await delay(1000);
-    console.log("you and sira see the 3 swords named");
-    await delay(1000);
-    console.log(".");
-    await delay(1000);
-    console.log("..");
-    await delay(1000);
-    console.log("...");
-    await delay(1000);
-    console.log(".");
-    await delay(1000);
-    console.log("..");
-    await delay(1000);
-    console.log("...");
-    await delay(1000);
-    console.log(`1.${herosword} 2.${monstersword} 3.${dragonsword}`);
-    console.log("the shop onwer says");
-    console.log("choose wisely ");
-    await delay(5000);
-    console.log("what do you choose?");
-    console.log("1. 2. or 3.");
-    const buyshop = prompt(`1.${herosword} 2.${monstersword} 3.${dragonsword}`);
-    if (buyshop === "1") {
-        console.log(`you choose ${herosword}`);
-        await delay(2000);
-        console.log(`the shop owner gives you the ${herosword}, this sword makes ${exports.swordSystem.damageONE()} damage`);
-        await delay(2000);
-        console.log(`you and sira leave the shop`);
-    }
-    else if (buyshop === "2") {
-        console.log(`you choose ${monstersword}`);
-        await delay(2000);
-        console.log(`the shop owner gives you the ${monstersword}, this sword makes ${exports.swordSystem.damageTWO()} damage`);
-        await delay(2000);
-        console.log(`you and sira leave the shop`);
-    }
-    else if (buyshop === "3") {
-        console.log(`you choose ${dragonsword}`);
-        await delay(2000);
-        console.log(`the shop owner gives you the ${dragonsword}, this sword makes ${exports.swordSystem.damageTHREE()} damage`);
-        await delay(2000);
-        console.log(`you and sira leave the shop`);
-    }
-    else {
-        console.log(`you choose`);
-        await delay(2000);
-        console.log(`nothing?`);
-        await delay(2000);
-        console.log(`sira and the owner looks at you confused`);
-        await delay(2000);
-        console.log(`you and sira leave the shop`);
-    }
-    console.log("sira ask you something");
-    const continuegame = prompt(`do you wanna continue with the game or leave? (y/n)`);
-    if (continuegame === "y" || answer === "yes") {
-        console.log("so we continue with our adventure! ");
-        await delay(2000);
-    }
-    else if (continuegame === "n") {
-        console.log("oh okay i understand that");
-        await delay(2000);
-        console.log("sira looks sad but she understand you and your decision");
-        await delay(2000);
-        console.log("sira looks at you and your vision slowly turns dark");
-        await delay(1500);
-        console.log(`thank you for playing this game i hope we see you again ${username}`);
-        await delay(3000);
-        return;
+    if (choice === '2') {
+        console.log(`You run away from the dragon but the dragon chases you and you take ///damage 50 damage but escape safely.`);
     }
 };
-main();
+start();
