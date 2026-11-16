@@ -1,0 +1,85 @@
+/* export const swordSystem = new SwordSystem();
+const herosword = swordSystem.herosword;
+const monstersword = swordSystem.monstersword;
+const dragonsword = swordSystem.dragonsword;
+const basicsword = swordSystem.basicsword;
+
+
+// Healing potions
+const maxHealingPotion = new MaxHealingPotion();
+const basicHealingPotion = new BasicHealingPotion();
+const bigHealingPotion = new BigHealingPotion();
+const strangePotion = new strangeHealingPotion(); */
+
+
+
+/* await tutorial.startTutorial(); */
+
+
+/* index game
+const gamestart = async (): Promise<void> => {
+  console.log("youre opening your eyes and a strange creature ask you")
+  console.log("Your first time here?")
+  const gamestartQ = prompt("(y/n) ").toLowerCase();
+  if  ( gamestartQ ==="y"){
+    console.log("oh, you have never been here before, well, weird");
+
+  }else if (gamestartQ === "n") {
+
+    console.log("oh, you have been here before, well, welcome back");
+  }else{
+    console.log("....");
+    console.log("pathetic")
+  }
+}; */
+
+
+
+//tutorial system
+/* const maxHealingPotion = new MaxHealingPotion();
+
+export class runTutorial {
+    public static async startTutorial(): Promise<void> {
+        console.log("Your first time?");
+        console.log("pathetic.....");
+        console.log(".....");
+        console.log("i will give you a new life");
+        console.log("............");
+        console.log("everything falls apart into nothingness");
+        console.log("you are now in a new world");
+        console.log("you are now a new person");
+        console.log("you are now a new being");
+        console.log("you are now a new soul");
+        console.log("you are now a new life");
+        console.log("you are now a new existence");
+        console.log("you are now a new reality");
+        console.log("you are now a new universe");
+        console.log("darkness surrounds you, you can barely see anything, but you can hear a voice in the distance...");
+        console.log('You falling down a dark hole, you hit your head hard and wake up in a strange place...');
+        console.log('Your eyes are blurry, you can barely see anything, but you can hear a voice in the distance...');
+        console.log('You can barely make out the words, but you can hear it say "Is someone here?"');
+        console.log('out of nowhere, a weird looking women appears, she looks like a wolf and a human at the same time, she has a long tail and sharp claws, she is wearing a long cloak and a hood, she has a staff in her hand, she looks like a wizard or a witch, she is looking at you with a curious expression on her face...');
+        console.log('She says "Hello, my name is Sira, I am a Wolf, and I have been looking for you, i saw someone falling from a black spot in the sky,"');
+        const username: string = prompt('Sira says "i almost forgot to ask, what is your name?" ');
+        const player = new Player(`${username}`, 100);
+        console.log(`Oh ${username}! `);
+        console.log(`Please be careful ${username}, I will give you a heal with a ${maxHealingPotion.name} and restore your health to full.`);
+        player.health.takeDamage(50);
+        console.log(`you looking over you and see a health bar and it says ${player.health.getHp()}/${player.health.getMaxHp()} HP.`);
+        maxHealingPotion.heal(player);
+        console.log(`You have been healed by "sira"to ${player.health.getHp()}/${player.health.getMaxHp()} HP.`);
+        console.log('Sira says "I will take you to the village, but first, I need to ask you a question."');
+        console.log('Sira says "Where you from? i never saw anyone from this place before, you must be from a different world, right?"');
+    };
+
+} */
+
+console.log("pathetic.....");
+    console.log("everything falls apart into nothingness");
+    console.log("Everything is dark");
+    console.log(".................................................");
+    console.log("darkness surrounds you, you can barely see anything, but you can hear a voice in the distance...");
+    console.log('You falling down a dark hole, you hit your head hard and wake up in a strange place...');
+    console.log('Your eyes are blurry, you can barely see anything, but you can hear a voice in the distance...');
+    console.log('You can barely make out the words, but you can hear it say "Is someone here?"');
+    console.log('out of nowhere, a weird looking women appears, she looks like a wolf and a human at the same time, she has a long tail and sharp claws, she is wearing a long cloak and a hood, she has a staff in her hand, she looks like a wizard or a witch, she is looking at you with a curious expression on her face...');

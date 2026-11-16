@@ -1,5 +1,5 @@
 
-// sword system (items for attack) (optimized with copilot) 
+// sword system (items for attack) (optimized with copilot)
 export class SwordSystem {
   public readonly swords: string[] = ["THE HERO SWORD", "THE MONSTER SWORD", "THE DRAGON SWORD"];
   public readonly herosword = "THE HERO SWORD";
@@ -28,4 +28,19 @@ export class SwordSystem {
     return this.basicDamage;
   }
 
+  public damageFor(weapon: string | null): number {
+    switch (weapon?.toUpperCase()) {
+      case this.herosword:
+        return this.damageONE();
+      case this.monstersword:
+        return this.damageTWO();
+      case this.dragonsword:
+        return this.damageTHREE();
+      case this.basicsword:
+      case "WOODEN_SWORD":
+        return this.damageFOUR();
+      default:
+        return 10;
+    }
+  }
 }

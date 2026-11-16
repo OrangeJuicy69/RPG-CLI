@@ -30,9 +30,13 @@ export class BigHealingPotion {
 export class strangeHealingPotion {
   public readonly name = "strange Healing Potion";
   public readonly description = "A potion that restores your health or causes damage.";
-  public readonly healingAmount = Math.floor(Math.random() * 100) - 100; // Random healing amount between -100 and 100
+  public readonly healingAmount = Math.floor(Math.random() * 201) - 100;
 
   public heal(player: Player): void {
-    player.health.heal(this.healingAmount);
+    if (this.healingAmount < 0) {
+      player.health.takeDamage(-this.healingAmount);
+    } else {
+      player.health.heal(this.healingAmount);
+    }
   }
 }

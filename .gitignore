@@ -1,0 +1,14 @@
+node_modules
+data/save.json
+oldindex story
+
+index.js
+console-typewriter.js
+EnemyHPsystem.js
+HealingPotion.js
+PlayerHPsystem.js
+SwordSystem.js
+typewriter.j
+save/save.json
+/out/System/items.js
+P
