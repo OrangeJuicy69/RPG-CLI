@@ -28,10 +28,12 @@ async function visitShop(ask) {
             console.log("Please choose 1, 2, 3, or 0.");
             continue;
         }
+        //if you dont have enough gold 
         if (stats_1.state.gold < item.price) {
             console.log("You don't have enough gold.");
             continue;
         }
+        //as already mentioned above, you only have rn the basic healing potion
         stats_1.state.gold -= item.price;
         if (choice === "1") {
             stats_1.state.inventory["basic_healing_potion"] = (stats_1.state.inventory["basic_healing_potion"] ?? 0) + 1;
