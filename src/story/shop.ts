@@ -1,6 +1,10 @@
 import { save, state } from "../data/stats";
 import { SwordSystem } from "../System/SwordSystem";
 
+//Shop system to buy sword and potion
+//rn you only can buy the Basic Healing Potion
+//see more in the file called HealingPotion.ts for infos
+
 type Ask = (question: string) => Promise<string>;
 
 const BASIC_POTION_PRICE = 20;
@@ -31,11 +35,12 @@ export async function visitShop(ask: Ask): Promise<void> {
       console.log("Please choose 1, 2, 3, or 0.");
       continue;
     }
+    //if you dont have enough gold 
     if (state.gold < item.price) {
       console.log("You don't have enough gold.");
       continue;
     }
-
+    //as already mentioned above, you only have rn the basic healing potion
     state.gold -= item.price;
     if (choice === "1") {
       state.inventory["basic_healing_potion"] = (state.inventory["basic_healing_potion"] ?? 0) + 1;
