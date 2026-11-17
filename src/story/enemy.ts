@@ -1,5 +1,7 @@
 import { Enemy } from "../System/EnemyHPsystem";
 
+//enemys for the woods
+//will be used later in some other section in the game
 const woodsEnemies = [
   { name: "Slime", hp: 30, damage: 8, gold: 15 },
   { name: "Wolf", hp: 45, damage: 12, gold: 25 },
