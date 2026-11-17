@@ -1,6 +1,8 @@
 node_modules
 data/save.json
 oldindex story
+/.gitignore
+
 
 index.js
 console-typewriter.js
@@ -8,7 +10,10 @@ EnemyHPsystem.js
 HealingPotion.js
 PlayerHPsystem.js
 SwordSystem.js
-typewriter.j
+typewriter.js
 save/save.json
 /out/System/items.js
-P
+oldstuff
+shop.js
+woods.js
+randomevent.js
