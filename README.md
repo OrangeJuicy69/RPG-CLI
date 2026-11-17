@@ -1,7 +1,7 @@
 ### RPG-CLI (Terminal only)
 
 Developed by [OrangeJuicy69](https://github.com/OrangeJuicy69)
-
+>every AI section is marked inside the code via commants
 ## Introduction to the game
 This is a RPG terminal based game made with TypeScript
  
@@ -84,6 +84,7 @@ To run directly from TypeScript during development:
 pnpm dev
 ```
 For a debugging session, run `pnpm dev:debug`.
+The debugging session dosent work that good but im trying to fix it!
 
 ## Project structure
 
@@ -98,6 +99,7 @@ For a debugging session, run `pnpm dev:debug`.
 │   │   └── stats.ts             # Player state and save-file handling
 │   ├── story/
 │   │   ├── enemy.ts             # Woods enemy selection
+│   │   ├── randomevent.ts       # Random Events System 
 │   │   ├── shop.ts              # Shop menu and purchases
 │   │   └── woods.ts             # Woods combat
 │   └── System/
@@ -111,10 +113,7 @@ For a debugging session, run `pnpm dev:debug`.
 ├── out/                         # Compiled JavaScript created by `pnpm build`
 │   ├── index.js                 # Compiled game entry point
 │   ├── data/stats.js            # Compiled save handling
-│   ├── story/
-│   │   ├── enemy.js             # Compiled enemy selection
-│   │   ├── shop.js              # Compiled shop
-│   │   └── woods.js             # Compiled combat
+│   ├── story                    # Compiled story systems
 │   └── System/                  # Compiled game systems
 └── save/
     └── save.json                # Player save, created automatically
