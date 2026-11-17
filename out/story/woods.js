@@ -9,6 +9,7 @@ async function visitWoods(player, ask) {
     const enemy = (0, enemy_1.createWoodsEnemy)();
     const swords = new SwordSystem_1.SwordSystem();
     const potion = new HealingPotion_1.BasicHealingPotion();
+    //Enemy and hp will show here 
     console.log(`A ${enemy.name} appears! It has ${enemy.health.getHp()} HP.`);
     while (player.health.isAlive() && enemy.health.isAlive()) {
         console.log(`Your HP: ${player.health.getHp()}/${player.health.getMaxHp()} | ${enemy.name} HP: ${enemy.health.getHp()}`);
@@ -34,22 +35,31 @@ async function visitWoods(player, ask) {
             console.log("You used a basic healing potion.");
         }
         else if (choice === "3" || choice === "run" || choice === "flee") {
-            console.log("You escaped back to the village.");
+            console.log("You escaped");
+            console.log("you are going back to the village.");
             return;
         }
         else {
-            console.log("Please choose attack, potion, or run.");
+            console.log("Please choose attack, potion, or run."); //if you dont choes 1 of 3 option
             continue;
         }
         if (enemy.health.isAlive()) {
             player.health.takeDamage(enemy.attackDamage);
-            console.log(`The ${enemy.name} hits you for ${enemy.attackDamage} damage.`);
+            console.log(`The ${enemy.name} hits you for ${enemy.attackDamage} damage.`); //enemy name and attack and damage
         }
     }
+    //when you die bcs of the enemy you lose your hole inventory (does not work rn(trying to wipe the json and making a new one))
     if (!player.health.isAlive()) {
-        console.log("You were knocked out. Return to camp to recover.");
+        console.log("You were knocked out");
+        console.log(`your curent Hp is ${stats_1.state.hp}`);
+        console.log(`You lose everything but start again with the basic stuff`);
+        //Trying to restore to basic stats but doesent work at the moment
+        /* rmSync("save/save.json", {
+          force: true
+        }) */
         return;
     }
+    //when you killed the enemy your kill count goes up and you get gold
     stats_1.state.kills += 1;
     stats_1.state.gold += enemy.goldReward;
     (0, stats_1.save)();
