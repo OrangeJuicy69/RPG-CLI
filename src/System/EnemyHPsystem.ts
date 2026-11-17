@@ -1,5 +1,7 @@
 import { HPsystem } from "./PlayerHPsystem";
 
+//enemy hp system for the woods 
+//i have to make it better 
 export class Enemy {
   public readonly health: HPsystem;
 
