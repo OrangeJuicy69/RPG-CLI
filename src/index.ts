@@ -7,6 +7,14 @@ import { visitWoods } from "./story/woods";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 
+
+//Made by OrangeJuicy
+//This is the main file where everything gets together (see above what is importet)
+//NOTE!!!!
+//every setion made or i got help from , AI is markt with comments and where its starts and ends
+
+
+
 //typewriter configuration
 typewriterConfig.delayMs = 120;        // delay for output (console.log in ms)
 typewriterConfig.enabled = true;       // enable/disable typewriter effect
@@ -25,6 +33,7 @@ async function main(): Promise<void> {
   console.log(`Welcome ${state.name}! HP: ${player.health.getHp()}/${player.health.getMaxHp()}, Gold: ${state.gold}`);
   const prompt = createInterface({ input: stdin, output: stdout });
 
+  //you get ask where you wanna go :)
   try {
     let exploring = true;
     while (exploring) {
@@ -35,6 +44,8 @@ async function main(): Promise<void> {
       console.log("4. Leave the game");
       const destination = (await prompt.question("Choose a place: ")).trim().toLowerCase();
 
+
+      //Help by Copilot 
       switch (destination) {
         case "1":
         case "shop":
@@ -52,6 +63,8 @@ async function main(): Promise<void> {
           player.health.heal(30);
           if (player.health.getHp() === previousHp) {
             console.log("You are already at full HP.");
+            //idea (not implementet yet)
+            //sleep time for random event for the night and day(not implementet yet!)
           } else {
             console.log(`You rested at camp. HP: ${player.health.getHp()}/${player.health.getMaxHp()}.`);
           }
@@ -71,7 +84,7 @@ async function main(): Promise<void> {
     prompt.close();
   }
 }
-
+//If the game is unable to start (Stats(json error) or Code Error)
 main().catch((error: unknown) => {
   console.error("Unable to start the game:", error);
   process.exitCode = 1;
