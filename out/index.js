@@ -32,6 +32,7 @@ async function main() {
             console.log("3. Camp (recover 30 HP)");
             console.log("4. Leave the game");
             const destination = (await prompt.question("Choose a place: ")).trim().toLowerCase();
+            //Help by Copilot 
             switch (destination) {
                 case "1":
                 case "shop":
@@ -49,6 +50,7 @@ async function main() {
                     player.health.heal(30);
                     if (player.health.getHp() === previousHp) {
                         console.log("You are already at full HP.");
+                        //sleep time for random event for the night and day(not implementet yet!)
                     }
                     else {
                         console.log(`You rested at camp. HP: ${player.health.getHp()}/${player.health.getMaxHp()}.`);
@@ -70,6 +72,7 @@ async function main() {
         prompt.close();
     }
 }
+//If the game is unable to start (Stats(json error) or Code Error)
 main().catch((error) => {
     console.error("Unable to start the game:", error);
     process.exitCode = 1;
