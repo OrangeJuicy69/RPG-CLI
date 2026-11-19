@@ -64,7 +64,7 @@ During a fight, enter `1` or `attack` to attack, `2` or `potion` to use a basic 
 Download the game, then open a terminal in the `rpg-cli` project directory:
 >If you have problems to start the game or if something is not working properly [install debuggin](./debuggin/install-help.md)
 cd rpg-cli
-```
+
 
 Install dependencies with pnpm:
 
@@ -83,6 +83,7 @@ To run directly from TypeScript during development:
 ```
 pnpm dev
 ```
+
 For a debugging session, run `pnpm dev:debug`.
 The debugging session dosent work that good but im trying to fix it!
 
