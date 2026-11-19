@@ -12,6 +12,7 @@ This is just a small game for learning new skills and to show my skills
 ## Systems
 
 Player data is saved as JSON in the project-root `save/save.json`. The file is created automatically the first time you start a new game. HP, weapon, inventory, kills, and gold are saved there.
+see documentation [Setup and debuggin](save/json.md)
 
 ## Gameplay
 
