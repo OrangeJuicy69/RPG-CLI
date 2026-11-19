@@ -87,3 +87,14 @@ If the kill section has a invalid value then the game wout start and spits out a
 }
  ```
  >At the end of the JSON file should not be a ","
+
+ > [!WARNING]
+> If you still have trobule to start the game, then you can look inside the console output.
+If the console puts out "Invalid tutorial value in save file" then the value in the Tutorial is wrong or was not defined correctly (SyntaxError)
+see stats script [stats.ts](src/data/stats.ts)
+```
+Unable to start the game: SyntaxError: Unexpected token '*', ..." "kills": *,
+  "gold"... is not valid JSON
+```
+This also applays for "level", "player name", HP Value", "weapon" "inventory", "gold" and "kills"
+>distinct console output for all errors
