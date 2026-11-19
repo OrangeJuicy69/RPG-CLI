@@ -62,8 +62,7 @@ During a fight, enter `1` or `attack` to attack, `2` or `potion` to use a basic 
 ## How to Play
 
 Download the game, then open a terminal in the `rpg-cli` project directory:
-
-```bash
+>If you have problems to start the game or if something is not working properly [install debuggin](./debuggin/install-help.md)
 cd rpg-cli
 ```
 
@@ -116,8 +115,11 @@ The debugging session dosent work that good but im trying to fix it!
 │   ├── data/stats.js            # Compiled save handling
 │   ├── story                    # Compiled story systems
 │   └── System/                  # Compiled game systems
+├── debuggin
+│   └── install-help.md          # debuggin for install
 └── save/
-    └── save.json                # Player save, created automatically
+    ├── save.json                # Player save, created automatically
+    └── json.md                  # Player save, debuggin help
 ```
 
 ## Updates
