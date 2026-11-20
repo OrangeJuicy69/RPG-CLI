@@ -6,6 +6,7 @@ import { visitShop } from "./story/shop";
 import { visitWoods } from "./story/woods";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
+import { runDataReset } from "./data/data-reset"
 
 
 //Made by OrangeJuicy
@@ -16,13 +17,14 @@ import { stdin, stdout } from "node:process";
 
 
 //typewriter configuration
-typewriterConfig.delayMs = 120;        // delay for output (console.log in ms)
+typewriterConfig.delayMs = 12;        // delay for output (console.log in ms)
 typewriterConfig.enabled = true;       // enable/disable typewriter effect
 
 async function main(): Promise<void> {
   if (!load()) {
     await runTutorial();
     save();
+    
   }
 
   const player = new Player(state.name, 100, state.hp, (hp) => {
@@ -32,7 +34,8 @@ async function main(): Promise<void> {
   save();
   console.log(`Welcome ${state.name}! HP: ${player.health.getHp()}/${player.health.getMaxHp()}, Gold: ${state.gold}`);
   const prompt = createInterface({ input: stdin, output: stdout });
-
+  await runDataReset();
+  
   //you get ask where you wanna go :)
   try {
     let exploring = true;
