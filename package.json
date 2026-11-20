@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "node out/index.js",
     "build:start": "pnpm run build && pnpm run start",
-    "dev": "tsx src/index.ts",
+    "dev": "tsx src/dev-test.ts",
     "dev:watch": "tsx watch src/index.ts",
     "dev:debug": "tsx --inspect src/index.ts",
     "dev:debug:brk": "tsx --inspect-brk src/index.ts",
