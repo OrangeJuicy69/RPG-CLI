@@ -4,6 +4,7 @@ exports.state = void 0;
 exports.hasSave = hasSave;
 exports.load = load;
 exports.save = save;
+exports.deleteSave = deleteSave;
 const node_fs_1 = require("node:fs");
 const node_path_1 = require("node:path");
 const defaults = {
@@ -15,6 +16,8 @@ const defaults = {
     inventory: {},
     kills: 0,
     gold: 50,
+    hour: 12,
+    min: 30
 };
 const SAVE_PATH = (0, node_path_1.resolve)(__dirname, "../../save/save.json");
 exports.state = { ...defaults, inventory: {} };
@@ -78,6 +81,16 @@ function load() {
             throw new Error("Invalid gold value in save file");
         next.gold = saved.gold;
     }
+    if (saved.hour !== undefined) {
+        if (!Number.isInteger(saved.hour) || saved.hour < 0)
+            throw new Error("Invalid hour value in save file");
+        next.hour = saved.hour;
+    }
+    //min has to be updatet so its not giving a error for 0 
+    /*  if (saved.min !== undefined) {
+       if (!Number.isInteger(saved.hour)|| saved.min < 0) throw new Error("Invalid min value in save file")
+         next.min = saved.min;
+     } */
     Object.assign(exports.state, next);
     return true;
 }
@@ -86,4 +99,10 @@ function save() {
     const tmp = SAVE_PATH + ".tmp";
     (0, node_fs_1.writeFileSync)(tmp, JSON.stringify(exports.state, null, 2), "utf8");
     (0, node_fs_1.renameSync)(tmp, SAVE_PATH);
+}
+function deleteSave() {
+    if (!(0, node_fs_1.existsSync)(SAVE_PATH))
+        return false;
+    (0, node_fs_1.unlinkSync)(SAVE_PATH);
+    return true;
 }
