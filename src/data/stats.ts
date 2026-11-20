@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, renameSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, renameSync, existsSync, mkdirSync, unlinkSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 export interface GameState {
@@ -10,6 +10,8 @@ export interface GameState {
     inventory: Record<string, number>;
     kills: number;
     gold: number;
+    hour: number;
+    min: number
 }
 
 const defaults: GameState = {
@@ -21,6 +23,8 @@ const defaults: GameState = {
     inventory: {},
     kills: 0,
     gold: 50,
+    hour: 12,
+    min: 30
 };
 
 const SAVE_PATH = resolve(__dirname, "../../save/save.json");
@@ -82,6 +86,15 @@ export function load(): boolean {
     if (!Number.isInteger(saved.gold) || saved.gold < 0) throw new Error("Invalid gold value in save file");
     next.gold = saved.gold;
   }
+  if (saved.hour !== undefined) {
+    if (!Number.isInteger(saved.hour)|| saved.hour < 0) throw new Error("Invalid hour value in save file")
+      next.hour = saved.hour;
+  }
+  //min has to be updatet so its not giving a error for 0 
+ /*  if (saved.min !== undefined) {
+    if (!Number.isInteger(saved.hour)|| saved.min < 0) throw new Error("Invalid min value in save file")
+      next.min = saved.min;
+  } */
 
   Object.assign(state, next);
   return true;
@@ -92,4 +105,10 @@ export function save(): void {
   const tmp = SAVE_PATH + ".tmp";
   writeFileSync(tmp, JSON.stringify(state, null, 2), "utf8");
   renameSync(tmp, SAVE_PATH);
+}
+
+export function deleteSave(): boolean {
+  if (!existsSync(SAVE_PATH)) return false;
+  unlinkSync(SAVE_PATH);
+  return true;
 }
