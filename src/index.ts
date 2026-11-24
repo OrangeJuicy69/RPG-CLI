@@ -26,6 +26,18 @@ async function main(): Promise<void> {
     save();
     
   }
+  else{
+    const resetPrompt = createInterface({ input: stdin, output: stdout });
+    const answerRestMenu = (await resetPrompt.question("Would you like to reset your data? (y/n): ")).trim().toLowerCase();
+    resetPrompt.close();
+
+    if (answerRestMenu === "y" || answerRestMenu === "yes") {
+      console.log("going to data reset");
+      await runDataReset();
+    } else if (answerRestMenu === "n" || answerRestMenu === "no") {
+      console.log("continue with the main game");
+    }
+  }
 
   const player = new Player(state.name, 100, state.hp, (hp) => {
     state.hp = hp;
@@ -34,7 +46,7 @@ async function main(): Promise<void> {
   save();
   console.log(`Welcome ${state.name}! HP: ${player.health.getHp()}/${player.health.getMaxHp()}, Gold: ${state.gold}`);
   const prompt = createInterface({ input: stdin, output: stdout });
-  await runDataReset();
+ 
   
   //you get ask where you wanna go :)
   try {
