@@ -83,6 +83,7 @@ To run directly from TypeScript during development:
 ```
 pnpm dev
 ```
+>if you have problems to start the dev development vist the troubleshooting markdown [dev-test.md](./debuggin/dev-test.md)
 
 For a debugging session, run `pnpm dev:debug`.
 The debugging session dosent work that good but im trying to fix it!
