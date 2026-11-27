@@ -1,4 +1,4 @@
-// story.ts  (TypeScript 5.x, Node 18+ assumed)
+// story.ts  (TypeScript 5.x, Node 18+ assumed look if your node is on the newest version)
 import { save, state } from "../data/stats";
 import { Player } from "../System/PlayerHPsystem";
 import { CHAPTERS } from "./chapters";
