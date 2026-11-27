@@ -23,7 +23,7 @@ After the first-time tutorial, you arrive at the village menu. Choose a destinat
 | `1` / `shop` | Shop | Buy healing potions and swords with gold. |
 | `2` / `woods` | Woods | Fight a random slime, wolf, or goblin, use a potion, or run away. |
 | `3` / `camp` | Camp | Recover up to 30 HP. |
-| `4` / `story` | Story mode | Meet Sira, face the dragon, and follow the watchtower clue. Resume from saved progress. |
+| `4` / `story` | Story mode | Meet Sira, face the dragon, and follow the watchtower clue. Resume from saved progress.(this mode is just a short story and will be not forder continud) |
 | `5` / `leave` | Leave | Save your progress and exit. |
 
 You start with 50 gold. Defeating an enemy earns 15–25 gold. The shop sells a basic healing potion for 20 gold, a Monster Sword for 75 gold, a Hero Sword for 150 gold, and a Dragon Sword for 250 gold. You keep every sword you buy and can equip any owned sword in the shop. Potions restore 25 HP and are used during combat. Your basic sword deals 20 damage; the Monster Sword deals 50, the Hero Sword deals 80, and the Dragon Sword deals 60.
@@ -135,8 +135,8 @@ The debugging session dosent work that good but im trying to fix it!
 - [x] Typewriter effect for text in the game
 - [x] Village menu, shop, woods combat, and camp
 - [x] Build-and-start command (`pnpm build:start`)
+- [x] More locations and story content
 - [ ] Skip Tutorial
-- [ ] More locations and story content
 
 ## Links
 
