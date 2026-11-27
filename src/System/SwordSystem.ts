@@ -1,5 +1,6 @@
 
 // sword system (items for attack) (optimized with copilot)
+//now you can use every sword 
 export class SwordSystem {
   public readonly swords: string[] = ["BASIC SWORD", "THE HERO SWORD", "THE MONSTER SWORD", "THE DRAGON SWORD"];
   public readonly herosword = "THE HERO SWORD";
