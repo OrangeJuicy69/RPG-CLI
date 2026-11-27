@@ -2,7 +2,7 @@ import { rmSync } from "node:fs";
 import { BasicHealingPotion } from "../System/HealingPotion";
 import { Player } from "../System/PlayerHPsystem";
 import { SwordSystem } from "../System/SwordSystem";
-import { save, state } from "../data/stats";
+import { resetState, save, state } from "../data/stats";
 import { createWoodsEnemy } from "./enemy";
 
 //This Script is for the woods section to fight 1 of 3 enemy
@@ -26,7 +26,7 @@ export async function visitWoods(player: Player, ask: Ask): Promise<void> {
     if (choice === "1" || choice === "attack") {
       const damage = swords.damageFor(state.weapon);
       enemy.health.takeDamage(damage);
-      console.log(`You hit the ${enemy.name} for ${damage} damage.`);
+      console.log(`You hit the ${enemy.name} with ${swords.nameFor(state.weapon)} for ${damage} damage.`);
     } else if (choice === "2" || choice === "potion") {
       const potionCount = state.inventory["basic_healing_potion"] ?? 0;
       if (potionCount < 1) {
@@ -61,13 +61,15 @@ export async function visitWoods(player: Player, ask: Ask): Promise<void> {
     console.log(`your curent Hp is ${state.hp}`);
     console.log(`You lose everything but start again with the basic stuff`)
 
+    const playerName = state.name;
+    resetState(playerName);
+    player.health.heal(player.health.getMaxHp());
+    save();
     //Trying to restore to basic stats but doesent work at the moment
     //Note for me: 
     /* rmSync("save/save.json", {
       force: true
     }) */
-
-    
     return;
   }
 //when you killed the enemy your kill count goes up and you get gold

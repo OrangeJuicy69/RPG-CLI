@@ -7,6 +7,7 @@ import { visitWoods } from "./story/woods";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { runDataReset } from "./data/data-reset"
+import { getStoryStatus, renderProgressBar, story } from "./story/main";
 
 
 //Made by OrangeJuicy
@@ -27,16 +28,7 @@ async function main(): Promise<void> {
     
   }
   else{
-    const resetPrompt = createInterface({ input: stdin, output: stdout });
-    const answerRestMenu = (await resetPrompt.question("Would you like to reset your data? (y/n): ")).trim().toLowerCase();
-    resetPrompt.close();
-
-    if (answerRestMenu === "y" || answerRestMenu === "yes") {
-      console.log("going to data reset");
-      await runDataReset();
-    } else if (answerRestMenu === "n" || answerRestMenu === "no") {
-      console.log("continue with the main game");
-    }
+    await runDataReset();
   }
 
   const player = new Player(state.name, 100, state.hp, (hp) => {
@@ -56,7 +48,8 @@ async function main(): Promise<void> {
       console.log("1. Shop");
       console.log("2. Woods");
       console.log("3. Camp (recover 30 HP)");
-      console.log("4. Leave the game");
+      console.log(`4. Story mode (${getStoryStatus()})`);
+      console.log("5. Leave the game");
       const destination = (await prompt.question("Choose a place: ")).trim().toLowerCase();
 
 
@@ -86,13 +79,17 @@ async function main(): Promise<void> {
           break;
         }
         case "4":
+        case "story":
+          await story((question) => prompt.question(question), player);
+          break;
+        case "5":
         case "quit":
         case "leave":
           exploring = false;
           console.log("See you next time!");
           break;
         default:
-          console.log("Please choose shop, woods, camp, or leave.");
+          console.log("Please choose shop, woods, camp, story, or leave.");
       }
     }
   } finally {

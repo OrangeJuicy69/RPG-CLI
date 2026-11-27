@@ -1,14 +1,14 @@
-import { deleteSave, load, state } from "./stats";
+import { load, resetState, save, state } from "./stats";
 import { SwordSystem } from "../System/SwordSystem";
+import { runTutorial } from "../System/tutorial";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import Fs from 'node:fs/promises'
 /* import { defaults: GameState } from "../data/stats" */ //i have to fix this today
 
 async function askDel(): Promise<string> {
     const rl = createInterface({ input, output });
     try {
-        const answer = await rl.question("Do you want to delete your save file? (y/N) ");
+        const answer = await rl.question("Would you like to reset your game data? (y/N) ");
         return answer.trim().toLowerCase();
     }
     finally {
@@ -36,16 +36,12 @@ export async function runDataReset(): Promise<void> {
 
     const answer = await askDel();
     if (answer === "y" || answer === "yes") {
-        if (deleteSave()) {
-            await Fs.rm('./save/save.json');
-            console.log("Save file was deleted.");
-            console.log("new default save file created");
-
-        } else {
-            console.log("No save file was found to delete.");
-        }
+        resetState();
+        await runTutorial();
+        save();
+        console.log("Save data was reset. A new game is ready.");
     } else {
-        console.log("Save file was not deleted.");
+        console.log("Save data was not reset.");
     }
 }
 

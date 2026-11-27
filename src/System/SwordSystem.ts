@@ -1,7 +1,7 @@
 
 // sword system (items for attack) (optimized with copilot)
 export class SwordSystem {
-  public readonly swords: string[] = ["THE HERO SWORD", "THE MONSTER SWORD", "THE DRAGON SWORD"];
+  public readonly swords: string[] = ["BASIC SWORD", "THE HERO SWORD", "THE MONSTER SWORD", "THE DRAGON SWORD"];
   public readonly herosword = "THE HERO SWORD";
   public readonly monstersword = "THE MONSTER SWORD";
   public readonly dragonsword = "THE DRAGON SWORD";
@@ -42,5 +42,9 @@ export class SwordSystem {
       default:
         return 10;
     }
+  }
+
+  public nameFor(weapon: string | null): string {
+    return weapon ?? this.basicsword;
   }
 }

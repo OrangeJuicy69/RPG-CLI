@@ -43,6 +43,7 @@ export async function runTutorial(): Promise<void> {
 
     //You get a sword and 2 potion
     state.weapon = swordSystem.basicsword;
+    state.swords = [swordSystem.basicsword];
     state.inventory.basic_healing_potion = 2;
     console.log(`You received the ${swordSystem.basicsword} and 2 basic healing potions.`);
 }

@@ -11,7 +11,7 @@ This is just a small game for learning new skills and to show my skills
 
 ## Systems
 
-Player data is saved as JSON in the project-root `save/save.json`. The file is created automatically the first time you start a new game. HP, weapon, inventory, kills, and gold are saved there.
+Player data is saved as JSON in the project-root `save/save.json`. The file is created automatically the first time you start a new game. HP, owned and equipped swords, inventory, kills, gold, and story progress are saved there.
 see documentation [Setup and debuggin](save/json.md)
 
 ## Gameplay
@@ -23,14 +23,15 @@ After the first-time tutorial, you arrive at the village menu. Choose a destinat
 | `1` / `shop` | Shop | Buy healing potions and swords with gold. |
 | `2` / `woods` | Woods | Fight a random slime, wolf, or goblin, use a potion, or run away. |
 | `3` / `camp` | Camp | Recover up to 30 HP. |
-| `4` / `leave` | Leave | Save your progress and exit. |
+| `4` / `story` | Story mode | Meet Sira, face the dragon, and follow the watchtower clue. Resume from saved progress. |
+| `5` / `leave` | Leave | Save your progress and exit. |
 
-You start with 50 gold. Defeating an enemy earns 15–25 gold. The shop sells a basic healing potion for 20 gold, a Monster Sword for 75 gold, and a Hero Sword for 150 gold. Potions restore 25 HP and are used during combat. Your basic sword deals 20 damage; the Monster Sword deals 50 and the Hero Sword deals 80.
+You start with 50 gold. Defeating an enemy earns 15–25 gold. The shop sells a basic healing potion for 20 gold, a Monster Sword for 75 gold, a Hero Sword for 150 gold, and a Dragon Sword for 250 gold. You keep every sword you buy and can equip any owned sword in the shop. Potions restore 25 HP and are used during combat. Your basic sword deals 20 damage; the Monster Sword deals 50, the Hero Sword deals 80, and the Dragon Sword deals 60.
 
 During a fight, enter `1` or `attack` to attack, `2` or `potion` to use a basic healing potion, or `3` or `run` to escape back to the village. Enemies retaliate after an attack or potion use, so use camp to recover between fights.
 
 ## Sword System
->The current shop sells the **MONSTER SWORD** and **HERO SWORD**. New players start with the **BASIC SWORD**.
+>The shop sells the **MONSTER SWORD**, **HERO SWORD**, and **DRAGON SWORD**. New players start with the **BASIC SWORD** and can equip any owned sword.
 
 ## HP System
 >Keep an eye on your HP. Enemies can knock you out, and camp restores up to 30 HP.
@@ -103,7 +104,9 @@ The debugging session dosent work that good but im trying to fix it!
 │   │   ├── enemy.ts             # Woods enemy selection
 │   │   ├── randomevent.ts       # Random Events System 
 │   │   ├── shop.ts              # Shop menu and purchases
-│   │   └── woods.ts             # Woods combat
+│   │   ├── woods.ts             # Woods combat
+│   │   ├── main.ts              # Story progression and saves
+│   │   └── chapters/            # Playable story chapters
 │   └── System/
 │       ├── console-typewriter.ts # Console text effect
 │       ├── EnemyHPsystem.ts     # Enemy health

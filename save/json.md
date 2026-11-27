@@ -9,11 +9,13 @@ This is a full sample of the Save File
   "name": "Meli",                       #here is your player name 
   "hp": 92,                             #Your Hp 
   "weapon": "THE HERO SWORD",           #curent weapon 
+  "swords": ["BASIC SWORD", "THE HERO SWORD"], #all owned swords
   "inventory": {                        #inventory for potion or other things
     "basic_healing_potion": 2
   },
   "kills": 999999,                      #enemys kills
-  "gold": 855                           #How much Gold you have
+  "gold": 855,                          #How much Gold you have
+  "storyCompleted": 1                   #Number of completed story chapters
 }
 ```
 >You can change everything if the game is no running (if its running its just goes back to the last value)
@@ -27,10 +29,12 @@ const defaults: GameState = {
     level: 1,
     name: "siro",
     hp: 100,
-    weapon: null,
+    weapon: "BASIC SWORD",
+    swords: ["BASIC SWORD"],
     inventory: {},
     kills: 0,
     gold: 50,
+    storyCompleted: 0,
 };
 ```
 
