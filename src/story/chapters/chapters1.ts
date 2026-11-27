@@ -1,5 +1,7 @@
 import { Chapter } from "./types";
 
+
+//this code is heavly helped by copilot
 export const chapter1: Chapter = {
     title: "Sira in the Strange Land",
     play: async (ask, player) => {

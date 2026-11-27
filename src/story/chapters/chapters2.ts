@@ -1,7 +1,7 @@
 import { Chapter } from "./types";
 import { SwordSystem } from "../../System/SwordSystem";
 import { state } from "../../data/stats";
-
+//this code is heavly helped by copilot
 export const chapter2: Chapter = {
     title: "The Dragon on the Road",
     play: async (ask, player) => {

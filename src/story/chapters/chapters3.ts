@@ -1,5 +1,5 @@
 import { Chapter } from "./types";
-
+//this code is heavly helped by copilot
 export const chapter3: Chapter = {
     title: "A Clue at the Village Gate",
     play: async (ask) => {
