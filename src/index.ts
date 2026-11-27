@@ -18,7 +18,7 @@ import { getStoryStatus, renderProgressBar, story } from "./story/main";
 
 
 //typewriter configuration
-typewriterConfig.delayMs = 12;        // delay for output (console.log in ms)
+typewriterConfig.delayMs = 120;        // delay for output (console.log in ms)
 typewriterConfig.enabled = true;       // enable/disable typewriter effect
 
 async function main(): Promise<void> {
@@ -48,7 +48,7 @@ async function main(): Promise<void> {
       console.log("1. Shop");
       console.log("2. Woods");
       console.log("3. Camp (recover 30 HP)");
-      console.log(`4. Story mode (${getStoryStatus()})`);
+      console.log(`4. Story mode (${getStoryStatus()})`); //story mode (you also can see the progress)
       console.log("5. Leave the game");
       const destination = (await prompt.question("Choose a place: ")).trim().toLowerCase();
 
